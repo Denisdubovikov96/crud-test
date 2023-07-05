@@ -101,7 +101,7 @@ function App() {
 
   return (
     <div className="app h-full flex flex-col px-8 pt-6">
-      <div className='w-full flex flex-row gap-3'>
+      <div className='w-full flex flex-row gap-3 flex-wrap'>
         <Autocomplete
           disablePortal
           size='small'
@@ -112,7 +112,7 @@ function App() {
             addFilter('label', v)
             onPageChange(0)
           }}
-          renderInput={(params: any) => <TextField {...params} label="Kind" />}
+          renderInput={(params: any) => <TextField {...params} label="Label" />}
         />
 
         <Autocomplete

@@ -25,24 +25,28 @@ const mockdata= [
       category: "Some category",
       name: 'Some name',
       text: "Lorem Lorem Lorem  Lorem Lorem LoremLoremLorem ",
+      label: "label 1",
       id: '0'
   },
   {
       category: "Some category",
       name: 'Some name',
       text: "Lorem Lorem Lorem  Lorem Lorem LoremLoremLorem ",
+      label: "label 1",
       id: '1'
   },
   {
       category: "Some category",
       name: 'Some name',
       text: "Lorem Lorem Lorem  Lorem Lorem LoremLoremLorem ",
+      label: "label 1",
       id: '2'
   },
   {
       category: "Some category",
       name: 'Some name',
       text: "Lorem Lorem Lorem  Lorem Lorem LoremLoremLorem ",
+      label: "label 1",
       id: '3'
   },
 ]
@@ -58,6 +62,7 @@ function App() {
     addRow,
     editRow,
     uniqCategories,
+    uniqLabels,
     filter,
     deleteRow,
     findById
@@ -76,7 +81,7 @@ function App() {
     setEditId(null)
   }
 
-  const onSaveHandler = (data: {category: string, name: string, text: string}) => {
+  const onSaveHandler = (data: {category: string, name: string, text: string, label: string}) => {
     if (editId) {
       editRow({
         ...data,
@@ -101,8 +106,12 @@ function App() {
           disablePortal
           size='small'
           id="combo-box-demo"
-          options={options}
+          options={uniqLabels}
           className='flex-1'
+          onChange={(_,v) => {
+            addFilter('label', v)
+            onPageChange(0)
+          }}
           renderInput={(params: any) => <TextField {...params} label="Kind" />}
         />
 

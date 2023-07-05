@@ -25,14 +25,16 @@ interface RequisitionDialogProps {
     defaultValues?: {
         name?: string,
         category?: string,
-        text?: string
+        text?: string,
+        label?: string
     }
 }
 
 interface FormState {
     name: string,
     category: string,
-    text: string
+    text: string,
+    label: string
 }
 
 const fieldConfig = [
@@ -45,6 +47,11 @@ const fieldConfig = [
         name: 'category',
         type: "text",
         label: "Category"
+    },
+    {
+        name: 'label',
+        type: "text",
+        label: "Label"
     },
     {
         name: 'text',
@@ -60,7 +67,8 @@ const RequisitionDialog: React.FC<RequisitionDialogProps> = ({ open, title, onCl
         defaultValues: {
             name: defaultValues?.name || "",
             category: defaultValues?.category || "",
-            text: defaultValues?.text || ""
+            text: defaultValues?.text || "",
+            label: defaultValues?.label || ""
         },
         // @ts-ignore
         resolver: yupResolver(schema)

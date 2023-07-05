@@ -8,9 +8,10 @@ import TableRow from '@mui/material/TableRow';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { RowData } from '../hooks/useTableController';
 
 interface TableDataProps {
-    data: any[],
+    data: RowData[],
     onRowDelete: (id: string) => void,
     onRowEdit: (id: string) => void
 }
@@ -24,6 +25,7 @@ const TableData: React.FC<TableDataProps> = ({ data, onRowDelete, onRowEdit }) =
                         <TableCell>Category</TableCell>
                         <TableCell align="left">Name</TableCell>
                         <TableCell align="left">Text</TableCell>
+                        <TableCell align="left">Label</TableCell>
                         <TableCell />
                     </TableRow>
                 </TableHead>
@@ -40,6 +42,9 @@ const TableData: React.FC<TableDataProps> = ({ data, onRowDelete, onRowEdit }) =
                             </TableCell>
                             <TableCell align="left">
                                 {row.text}
+                            </TableCell>
+                            <TableCell align="left">
+                                {row.label}
                             </TableCell>
                             <TableCell align="right">
                                 <div>

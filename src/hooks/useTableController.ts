@@ -1,19 +1,20 @@
 import React from 'react'
 
 
-const initialFilters = { name: '', category: "", kind: "" }
+const initialFilters = { name: '', category: "", label: "" }
 
 export type RowData = {
     category: string,
     name: string,
     text: string,
+    label: string,
     id: string
 }
 
 type Filters = {
     name: string | null,
     category: string | null,
-    kind: string | null
+    label: string | null
 }
 
 const useTableController = ({ initialValue }: { initialValue: RowData[] }) => {
@@ -52,15 +53,23 @@ const useTableController = ({ initialValue }: { initialValue: RowData[] }) => {
         return [...new Set(data.map((row) => row.category))]
     }, [data])
 
+    const uniqLabels = React.useMemo(() => {
+        return [...new Set(data.map((row) => row.label))]
+    }, [data])
+
     const filteredData = data.filter((row) => {
         let isValid = true
 
         if (!!filter.category) {
-            isValid = row.category.toLowerCase().includes(filter.category.toLowerCase())
+            isValid = isValid && row.category.toLowerCase() === filter.category.toLowerCase()
         }
 
         if (!!filter.name) {
             isValid = isValid && row.name.toLowerCase().includes(filter.name.toLowerCase())
+        }
+
+        if (!!filter.label) {
+            isValid = isValid && row.label.toLowerCase() === filter.label.toLowerCase()
         }
 
         return isValid
@@ -75,7 +84,8 @@ const useTableController = ({ initialValue }: { initialValue: RowData[] }) => {
         editRow,
         findById,
         uniqCategories,
-        filter
+        filter,
+        uniqLabels
     }
 }
 

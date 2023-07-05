@@ -93,7 +93,7 @@ const RequisitionDialog: React.FC<RequisitionDialogProps> = ({ open, title, onCl
                                     // @ts-ignore
                                     error={!!errors?.[fieldConfig.name]}
                                     // @ts-ignore
-                                    helperText={errors.name && <>{errors?.[fieldConfig.name].message}</>}
+                                    helperText={errors.name && <>{errors?.[fieldConfig.name]?.message}</>}
                                 />}
                             />
                         )
